@@ -2,6 +2,7 @@ use Software::License::Apache_2_0;
 use Software::License::Artistic_2_0;
 use Software::License::BSD;
 use Software::License::FreeBSD;
+use Software::License::GPL3;
 use Software::License::MIT;
 
 class Software::License
@@ -25,6 +26,10 @@ class Software::License
         elsif $license_name eq 'FreeBSD'
         {
             $license = Software::License::FreeBSD.new;
+        }
+        elsif $license_name eq 'GPL3'
+        {
+            $license = Software::License::GPL3.new;
         }
         elsif $license_name eq 'MIT'
         {
@@ -68,6 +73,8 @@ Software::License is a Perl 6 module for minting free software license texts. Th
 =item BSD - the BSD license
 
 =item FreeBSD - the two clause BSD license
+
+=item GPL3 - GPL 3 license 2007
 
 =item MIT - the MIT license
 

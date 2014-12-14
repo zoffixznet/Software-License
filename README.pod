@@ -7,8 +7,8 @@ Software::License - a Perl 6 module for creating free software license texts.
     use Software::License;
 
     my $license = Software::License.new;
-    my $freebsd_text_2014 = $license.fulltext('FreeBSD', 'David Farrell'); # defaults to current year
-    my $mit_text_2009 = $license.fulltext('FreeBSD', 'David Farrell', 2009); # can provide year as an arg
+    my $freebsd_text_2014 = $license.full-text('FreeBSD', 'David Farrell'); # defaults to current year
+    my $mit_text_2009 = $license.full-text('FreeBSD', 'David Farrell', 2009); # can provide year as an arg
 
 =head2 DESCRIPTION
 

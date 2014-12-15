@@ -5,39 +5,42 @@ use Software::License::FreeBSD;
 use Software::License::GPL3;
 use Software::License::MIT;
 
-class Software::License
+class Software::License:ver<0.02>
 {
     method full-text (Str:D $license_name, Str:D $holder, Int:D $year=DateTime.new(time).year)
     {
         my $license;
 
-        if $license_name eq 'Apache2'
+        given $license_name
         {
-            $license = Software::License::Apache_2_0.new;
-        }
-        elsif $license_name eq 'Artistic2'
-        {
-            $license = Software::License::Artistic_2_0.new;
-        }
-        elsif $license_name eq 'BSD'
-        {
-            $license = Software::License::BSD.new;
-        }
-        elsif $license_name eq 'FreeBSD'
-        {
-            $license = Software::License::FreeBSD.new;
-        }
-        elsif $license_name eq 'GPL3'
-        {
-            $license = Software::License::GPL3.new;
-        }
-        elsif $license_name eq 'MIT'
-        {
-            $license = Software::License::MIT.new;
-        }
-        else
-        {
-            die "$license_name not recognized";
+            when 'Apache2'
+            {
+                $license = Software::License::Apache_2_0.new;
+            }
+            when 'Artistic2'
+            {
+                $license = Software::License::Artistic_2_0.new;
+            }
+            when 'BSD'
+            {
+                $license = Software::License::BSD.new;
+            }
+            when 'FreeBSD'
+            {
+                $license = Software::License::FreeBSD.new;
+            }
+            when 'GPL3'
+            {
+                $license = Software::License::GPL3.new;
+            }
+            when 'MIT'
+            {
+                $license = Software::License::MIT.new;
+            }
+            default
+            {
+                die "$license_name is not a recognized license. Try: Apache2, Artistic2, BSD, FreeBSD, GPL3 or MIT";
+            }
         }
         return join "\n\n", preamble($holder, $year), '    ' ~ $license.long_name, $license.full_text($holder, $year);
     }
